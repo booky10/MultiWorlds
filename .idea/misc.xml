@@ -8,6 +8,9 @@
     <pattern value="tk.t11e.commands.GotoWorld" />
     <pattern value="tk.t11e.main.Main" />
     <pattern value="tk.t11e.commands.WorldList" />
+    <pattern value="tk.t11e.backup.commands.Backup" />
+    <pattern value="tk.t11e.util.TimeUtil" method="getStringTime" />
+    <pattern value="tk.t11e.util.TimeUtil" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />

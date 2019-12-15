@@ -22,3 +22,7 @@ commands:
     description: List all worlds
     usage: 'Usage: /worldList'
     permission: worldList
+  backup:
+    description: manages backups
+    usage: 'Usage: /backup backup'
+    permission: backup
