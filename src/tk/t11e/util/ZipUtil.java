@@ -43,7 +43,6 @@ public class ZipUtil {
             int length;
             while ((length = fileInputStream.read(bytes)) >= 0)
                 output.write(bytes, 0, length);
-            output.close();
         }
         return true;
     }

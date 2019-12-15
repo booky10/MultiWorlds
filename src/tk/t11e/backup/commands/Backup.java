@@ -31,6 +31,7 @@ public class Backup implements CommandExecutor, TabCompleter {
                         } catch (IOException exception) {
                             System.out.println(exception.getMessage());
                             player.sendMessage(BackupMain.PREFIX + exception.getMessage());
+                            exception.printStackTrace();
                         }
                     else
                         return false;
