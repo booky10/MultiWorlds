@@ -1,13 +1,14 @@
-package tk.t11e.main;
+package tk.t11e.multiworlds.main;
 // Created by booky10 in MultiWorlds (17:30 08.10.19)
 
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
 import org.bukkit.plugin.java.JavaPlugin;
-import tk.t11e.commands.CreateWorld;
-import tk.t11e.commands.GotoWorld;
-import tk.t11e.commands.WorldList;
+import tk.t11e.backup.BackupMain;
+import tk.t11e.multiworlds.commands.CreateWorld;
+import tk.t11e.multiworlds.commands.GotoWorld;
+import tk.t11e.multiworlds.commands.WorldList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,13 +23,18 @@ public class Main extends JavaPlugin {
     @Override
     public void onEnable() {
         long milliseconds = System.currentTimeMillis();
+
         saveDefaultConfig();
+
         worldList = getConfig().getStringList("worlds");
         for (World world : Bukkit.getWorlds())
             worldList.add(world.getName());
+
         for (String worldName : worldList)
             Bukkit.createWorld(new WorldCreator(worldName));
         initCommands();
+        BackupMain.onStart();
+
         System.out.println("[MultiWorlds] It took " + (System.currentTimeMillis() - milliseconds) +
                 "ms to initialize this plugin!");
     }
