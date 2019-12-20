@@ -1,2 +1,4 @@
 lastBackup: 1576426643552
+makeBackupOnDelete: true
+makeAutoBackups: true
 worlds: []

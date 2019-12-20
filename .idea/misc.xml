@@ -11,6 +11,10 @@
     <pattern value="tk.t11e.backup.commands.Backup" />
     <pattern value="tk.t11e.util.TimeUtil" method="getStringTime" />
     <pattern value="tk.t11e.util.TimeUtil" />
+    <pattern value="tk.t11e.util.ZipUtil" method="unzipArchive" />
+    <pattern value="tk.t11e.util.ZipUtil" />
+    <pattern value="tk.t11e.util.WorldUtil" method="exitsWorld" />
+    <pattern value="tk.t11e.util.WorldUtil" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />

@@ -7,6 +7,7 @@ import org.bukkit.WorldCreator;
 import org.bukkit.plugin.java.JavaPlugin;
 import tk.t11e.backup.BackupMain;
 import tk.t11e.multiworlds.commands.CreateWorld;
+import tk.t11e.multiworlds.commands.DeleteWorld;
 import tk.t11e.multiworlds.commands.GotoWorld;
 import tk.t11e.multiworlds.commands.WorldList;
 
@@ -53,6 +54,7 @@ public class Main extends JavaPlugin {
         Objects.requireNonNull(getCommand("gotoWorld")).setExecutor(new GotoWorld());
         Objects.requireNonNull(getCommand("initWorld")).setExecutor(new CreateWorld());
         Objects.requireNonNull(getCommand("worldList")).setExecutor(new WorldList());
+        Objects.requireNonNull(getCommand("deleteWorld")).setExecutor(new DeleteWorld());
     }
 
     public static List<String> getWorldNames() {

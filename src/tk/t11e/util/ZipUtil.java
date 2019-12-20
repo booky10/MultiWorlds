@@ -1,14 +1,42 @@
 package tk.t11e.util;
 // Created by booky10 in MultiWorlds (15:23 15.12.19)
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
+@SuppressWarnings("ResultOfMethodCallIgnored")
 public class ZipUtil {
+
+    public static void unzipArchive(String input, File outputFolder) throws IOException {
+        if (!outputFolder.exists()) outputFolder.mkdir();
+
+        ZipInputStream zipInputStream = new ZipInputStream(new FileInputStream(input));
+        ZipEntry zipEntry = zipInputStream.getNextEntry();
+        while (zipEntry != null) {
+            Path filePath = Paths.get(outputFolder.getAbsolutePath(), zipEntry.getName());
+            if (!zipEntry.isDirectory())
+                unzipFiles(zipInputStream, filePath);
+            else
+                Files.createDirectories(filePath);
+            zipInputStream.closeEntry();
+            zipEntry = zipInputStream.getNextEntry();
+        }
+        zipInputStream.close();
+    }
+
+    private static void unzipFiles(ZipInputStream zipInputStream, Path unzipFilePath) throws IOException {
+        FileOutputStream outputStream = new FileOutputStream(unzipFilePath.toAbsolutePath().toString());
+        BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(outputStream);
+        byte[] bytes = new byte[1024];
+        int i;
+        while ((i = zipInputStream.read(bytes)) != -1)
+            bufferedOutputStream.write(bytes, 0, i);
+    }
 
     public static boolean zipFolder(File input, File output) throws IOException {
         FileOutputStream fileOutputStream = new FileOutputStream(output);
