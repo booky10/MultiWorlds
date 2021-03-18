@@ -1,0 +1,14 @@
+plugins {
+    id 'java'
+    id 'idea'
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+    jcenter()
+}
+
+dependencies {
+    implementation 'tk.booky.paperbook:paperbook:1.16.5-R0.1-SNAPSHOT'
+}
