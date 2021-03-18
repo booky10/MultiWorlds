@@ -3,6 +3,9 @@ plugins {
     id 'idea'
 }
 
+version = '2.0-SNAPSHOT'
+group = 'tk.booky'
+
 repositories {
     mavenCentral()
     mavenLocal()
