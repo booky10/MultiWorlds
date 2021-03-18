@@ -2,6 +2,7 @@ package tk.booky.multiworlds;
 // Created by booky10 in MultiWorlds (21:32 18.03.21)
 
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
 import org.bukkit.command.Command;
@@ -20,8 +21,24 @@ public class WorldCommand implements TabExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (args.length == 2) {
-            if (args[0].equalsIgnoreCase("delete")) {
+        if (args.length == 1) {
+            if (args[0].equalsIgnoreCase("setSpawn")) {
+                if (sender instanceof Player) {
+                    World world = ((Player) sender).getWorld();
+                    Location location = ((Player) sender).getLocation();
+
+                    world.setSpawnLocation(location.getBlockX(), location.getBlockY(), location.getBlockZ());
+                    sender.sendMessage("Der Weltenspawn wurde umgesetzt!");
+                } else {
+                    sender.sendMessage("Du musst diesen Befehl als Spieler ausführen!");
+                }
+            } else if (args[0].equalsIgnoreCase("list")) {
+                sender.sendMessage("Es gibt aktuell folgende Welten:\n" + Bukkit.getWorlds().stream().map(World::getName).collect(Collectors.joining(", ")));
+            } else {
+                return false;
+            }
+        } else if (args.length == 2) {
+            if (args[0].equalsIgnoreCase("unload")) {
                 World world = Bukkit.getWorld(args[1]);
 
                 if (world == null) {
@@ -47,7 +64,7 @@ public class WorldCommand implements TabExecutor {
                 } else {
                     sender.sendMessage("Du musst diesen Befehl als Spieler ausführen!");
                 }
-            } else if (args[0].equalsIgnoreCase("create")) {
+            } else if (args[0].equalsIgnoreCase("load")) {
                 World world = Bukkit.createWorld(new WorldCreator(args[1]));
 
                 if (world != null) {
@@ -72,8 +89,8 @@ public class WorldCommand implements TabExecutor {
         List<String> completions = new ArrayList<>();
 
         if (args.length == 1) {
-            completions.addAll(Arrays.asList("delete", "create", "goto"));
-        } else if (args.length == 2 && (args[1].equalsIgnoreCase("delete") || args[1].equalsIgnoreCase("backup") || args[1].equalsIgnoreCase("goto"))) {
+            completions.addAll(Arrays.asList("unload", "load", "goto", "setSpawn", "list"));
+        } else if (args.length == 2 && (args[1].equalsIgnoreCase("unload") || args[1].equalsIgnoreCase("goto"))) {
             completions.addAll(Bukkit.getWorlds().stream().map(World::getName).collect(Collectors.toList()));
         }
 

@@ -9,5 +9,5 @@ prefix: MW
 commands:
   world:
     description: Manage the MultiWorlds worlds
-    usage: 'Usage: /world <delete|goto|create> [world]'
+    usage: 'Usage: /<command> <unload|goto|load|setSpawn|list> [world]'
     permission: multiworlds.command
