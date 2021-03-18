@@ -27,10 +27,13 @@ public class WorldCommand implements TabExecutor {
                 if (world == null) {
                     sender.sendMessage("Die Welt wurde nicht gefunden!");
                 } else {
+                    world.getPlayers().forEach(player -> player.kickPlayer("Die aktuelle Welt wird entladen!"));
+                    Bukkit.unloadWorld(world, true);
+
                     MultiWorldsMain.worlds.remove(world.getName());
                     MultiWorldsMain.main.saveConfig();
 
-                    Bukkit.unloadWorld(world, true);
+                    if (sender instanceof Player && !((Player) sender).isOnline()) return true;
                     sender.sendMessage("Die Welt wurde entfernt!");
                 }
             } else if (args[0].equalsIgnoreCase("goto")) {
