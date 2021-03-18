@@ -1,2 +1,3 @@
 # MultiWorlds
-A minecraft plugin to manage worlds
+
+A simple and lightweight plugin to manage your worlds.
