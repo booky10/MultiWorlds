@@ -1,0 +1,13 @@
+name: MultiWorlds
+main: tk.booky.multiworlds.MultiWorldsMain
+version: @version@
+api-version: '1.13'
+author: booky10
+description: A plugin to manage simple worlds
+prefix: MW
+
+commands:
+  world:
+    description: Manage the MultiWorlds worlds
+    usage: 'Usage: /world <delete|goto|create> [world]'
+    permission: multiworlds.command
